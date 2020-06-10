@@ -9,9 +9,11 @@ Add a `syntax-highlight` tag and insert the source code you want to be highlight
 
 ```html
 <syntax-highlight>
-var x = function(){
-  console.log('x')
+const y = 'Yeah!';
+var scream = function(text){
+  console.log(text)
 }
+scream(y);
 </syntax-highlight>
 ```
 
