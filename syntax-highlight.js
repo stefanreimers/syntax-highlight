@@ -7,7 +7,7 @@ class SyntaxHighlightingElement extends HTMLPreElement{
 
 	highlight(){
         
-		var reserved = /^(await|break|case|catch|class|const|continue|debugger|default|delete|do|else|export|extends|finally|for|function|if|import|in|instanceof|let|new|return|super|switch|this|throw|try|typeof|var|void|while|with|yield)$/i,
+		var reserved = /^(await|break|case|catch|class|const|continue|debugger|default|delete|do|else|export|extends|finally|for|function|if|import|in|instanceof|let|new|return|super|switch|this|throw|try|typeof|var|void|while|with|yield|document|window)$/i,
 
         i,
         nodesToHighlight,
@@ -45,7 +45,7 @@ class SyntaxHighlightingElement extends HTMLPreElement{
                 // kept to determine between regex and division
                 lastTokenType,
                 displayTokenType,
-                lastToken,
+                lastToken = '',
                 // flag determining if token is multi-character
                 multichar,
                 node;
@@ -102,18 +102,21 @@ class SyntaxHighlightingElement extends HTMLPreElement{
                         el.appendChild(
                             node = document.createElement('span')
                         )
-						.classList.add('token-type-' + displayTokenType );
+            .classList.add('token-type-' + displayTokenType );
             
                         node.appendChild(document.createTextNode(token));
                     }
 
-                    // saving the previous token type
-                    // (skipping whitespaces and comments)
-                    lastTokenType =
-                        (tokenType && tokenType < 7) ?
-                        tokenType : lastTokenType;
 
-                    lastToken = token;
+                      // saving the previous token type
+                      // (skipping whitespaces and comments)
+                      lastTokenType =
+                          (tokenType && tokenType < 7) ?
+                          tokenType : lastTokenType;
+
+                      lastToken = token;
+
+
                     // initializing a new token
                     token = '';
 
@@ -157,59 +160,38 @@ window.customElements.define('syntax-highlight', SyntaxHighlightingElement, {ext
 
 (function (w, d) {
   let style = d.createElement('STYLE');
+  let shTt = 'syntax-highlight .token-type-';
   style.textContent = `syntax-highlight {
-    background: #eee;
-    color: #333;
-    white-space: pre-wrap;
-    display:block;
-    overflow-x: auto;
-    font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", 
+background: #eee;
+color: #333;
+white-space: pre-wrap;
+display:block;
+overflow-x: auto;
+font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", 
 "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", 
 "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
-    tab-size: 2;
-    padding: 5px .5rem;
-    box-sizing: border-box;
-  }
-
-  syntax-highlight[data-lang]::before {
-    content: attr(data-lang);
-    display: block;
-    padding: 5px;
-    border-bottom: 1px solid #ddd
-  }
-
-  syntax-highlight .token-type-1,
-  syntax-highlight .token-type-2 {
-    color: #9a6e3a;
-  }
-
-  syntax-highlight .token-type-3 {
-    color: black
-  }
-
-  syntax-highlight .token-type-4 {
-    color: #f22c40
-  }
-
-  syntax-highlight .token-type-5,
-  syntax-highlight .token-type-6 {
-    color: #690;
-  }
-
-  syntax-highlight .token-type-7,
-  syntax-highlight .token-type-8,
-  syntax-highlight .token-type-9,
-  syntax-highlight .token-type-10 {
-    color: #708090; font-style: italic;
-  }
-
-  syntax-highlight .token-type-reserved {
-    color: #07a; font-weight: bold;
-  }
-
-  syntax-highlight .token-type-function{
-    color: #dd4a68
-  } 
-    `;
+tab-size: 2;
+padding: 5px .5rem;
+box-sizing: border-box;
+}
+syntax-highlight[data-lang]::before {
+content: attr(data-lang);
+display: block;
+padding: 5px;
+border-bottom: 1px solid #ddd
+}
+${shTt}1,
+${shTt}2 {color: #9a6e3a;}
+${shTt}3 {color: black}
+${shTt}4 {color: #f22c40}
+${shTt}5,
+${shTt}6 {color: #690;}
+${shTt}7,
+${shTt}8,
+${shTt}9,
+${shTt}10 {color: #708090; font-style: italic;}
+${shTt}reserved {color: #07a; font-weight: bold;}
+${shTt}function{color: #dd4a68} 
+`;
     d.head.appendChild(style);
 })(window, document);
