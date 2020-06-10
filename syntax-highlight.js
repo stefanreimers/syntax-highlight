@@ -103,10 +103,10 @@ class SyntaxHighlightingElement extends HTMLPreElement{
                             node = document.createElement('span')
                         )
             .classList.add('token-type-' + displayTokenType );
+            if(tokenType == 3) console.log({token, lastToken, lastTokenType, prev1, prev2, next1, nextChar })
             
                         node.appendChild(document.createTextNode(token));
                     }
-
 
                       // saving the previous token type
                       // (skipping whitespaces and comments)
@@ -115,7 +115,6 @@ class SyntaxHighlightingElement extends HTMLPreElement{
                           tokenType : lastTokenType;
 
                       lastToken = token;
-
 
                     // initializing a new token
                     token = '';
