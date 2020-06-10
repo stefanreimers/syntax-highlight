@@ -18,3 +18,6 @@ scream(y);
 ```
 
 See the included `index.html` file as an example.
+
+## Credits
+Based on the [microlight](https://github.com/asvd/microlight) library and Chris Coyier for [styling considerations](https://css-tricks.com/considerations-styling-pre-tag/) for the `pre` tag.
