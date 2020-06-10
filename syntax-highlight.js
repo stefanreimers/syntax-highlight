@@ -1,3 +1,8 @@
+/**
+ * @version 1.0.0
+ * @license MIT, see https://github.com/stefanreimers/syntax-highlight
+ * @copyright 2020 Stefan Reimers
+ */
 "use strict";
 class SyntaxHighlightingElement extends HTMLPreElement{
 
