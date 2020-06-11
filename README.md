@@ -1,5 +1,5 @@
 # syntax-highlight
-Custom Element to do simple syntax highlighting
+Custom Element to do simple syntax highlighting, 2kb in sizes to help you visualizing code examples on your website.
 
 ## Installation
 Include the Javascript file (either `syntax-highlight.js` OR minified version `syntax-highlight.min.js`) in your HTML:
@@ -20,7 +20,7 @@ scream(y);
 </syntax-highlight>
 ```
 
-See the included `index.html` file as an example.
+See the included `index.html` file as an example or see it in action at [https://stefanreimers.github.io/syntax-highlight/](https://stefanreimers.github.io/syntax-highlight/).
 
 ## Credits
-Based on the [microlight](https://github.com/asvd/microlight) library and Chris Coyier for [styling considerations](https://css-tricks.com/considerations-styling-pre-tag/) for the `pre` tag.
+Based on the [microlight](https://github.com/asvd/microlight) library and using the [styling considerations](https://css-tricks.com/considerations-styling-pre-tag/) for the `pre` tag.
