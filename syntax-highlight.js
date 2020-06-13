@@ -1,17 +1,16 @@
 /**
- * @version 1.0.0
+ * @version 1.0.2
  * @license MIT, see https://github.com/stefanreimers/syntax-highlight
  * @copyright 2020 Stefan Reimers
  */
 "use strict";
-class SyntaxHighlightingElement extends HTMLPreElement{
+class SyntaxHighlightingElement extends HTMLElement{
 
 	connectedCallback(){
-    this.highlight();
+    window.requestAnimationFrame( () => {this.highlight();} );
 	}
 
 	highlight(){
-        
 		var reserved = /^(await|break|case|catch|class|const|continue|debugger|default|delete|do|else|export|extends|finally|for|function|if|import|in|instanceof|let|new|return|super|switch|this|throw|try|typeof|var|void|while|with|yield|document|window)$/i,
 
         i,
@@ -54,7 +53,6 @@ class SyntaxHighlightingElement extends HTMLPreElement{
                 // flag determining if token is multi-character
                 multichar,
                 node;
-
 
             // running through characters and highlighting
             while (prev2 = prev1,
@@ -108,7 +106,6 @@ class SyntaxHighlightingElement extends HTMLPreElement{
                             node = document.createElement('span')
                         )
             .classList.add('token-type-' + displayTokenType );
-            if(tokenType == 3) console.log({token, lastToken, lastTokenType, prev1, prev2, next1, nextChar })
             
                         node.appendChild(document.createTextNode(token));
                     }
@@ -160,7 +157,7 @@ class SyntaxHighlightingElement extends HTMLPreElement{
 	
 }
 
-window.customElements.define('syntax-highlight', SyntaxHighlightingElement, {extends: "pre"});
+window.customElements.define('syntax-highlight', SyntaxHighlightingElement);
 
 (function (w, d) {
   let style = d.createElement('STYLE');
