@@ -163,6 +163,7 @@ window.customElements.define('syntax-highlight', SyntaxHighlightingElement);
   let style = d.createElement('STYLE');
   let shTt = 'syntax-highlight .token-type-';
   style.textContent = `syntax-highlight {
+  text-align:left !important;
 background: #eee;
 color: #333;
 white-space: pre-wrap;
